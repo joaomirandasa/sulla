@@ -46,6 +46,7 @@ function start(client) {
 | Get group members                 |             | ✅          |
 | Send contact                      |             | ✅          |
 | Get contact detail                |             | ✅          |
+| Send Links                     |             | ✅             |
 | [Send Images (image)](#sending-mediafiles)               |             | ✅          |
 | [Send media (audio, doc)](#sending-mediafiles)  |             | ✅          |
 | [Send media (video)](#sending-video)  |             | ✅          |
@@ -113,6 +114,22 @@ function start(client: Whatsapp) {
       });
     }
   });
+}
+
+create().then(client => start(client));
+```
+
+## Sending Link with thumb
+
+Here is an example of how to send links with thumb, title and description, - it's verry important pay attention to thumb sended - thumb field is an base64 string witout mime type and identification. Just an small IMAGE as base64.
+
+Pay attention to order of parameters too, because chatId is last parameter in this case!
+
+```javascript
+import { create, Whatsapp} from 'sulla-hotfix';
+
+function start(client: Whatsapp) {
+await client.sendMessageWithThumb([BASE64 FILE DATA], 'https://github.com/', 'Github', 'Discover and contribute to over 100 million projects.','xyz@c.us')
 }
 
 create().then(client => start(client));
